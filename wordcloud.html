@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.0.1/wordcloud2.min.js"></script>
+  </head>
+  <body>
+    <canvas
+      id="my_canvas"
+      width="500"
+      height="400"
+      style="border: 1px solid #ccc"
+    ></canvas>
+    <script>
+      var list = [
+        ["Важное", 30],
+        ["новость", 20],
+        ["код", 15],
+        ["библиотека", 25],
+        ["облако", 10],
+        ["слова", 5],
+      ];
+      WordCloud(document.getElementById("my_canvas"), {
+        list: list,
+        font: "Arial",
+        gridSize: 15,
+        weightFactor: 2,
+        color: "#09f",
+        backgroundColor: "#eee",
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,312 @@
+{
+  "groups_stats": {
+    "ITAM.minecraft": {
+      "users_quantity": 1247,
+      "users_with_open_numbers": 89,
+      "users_with_premium": 156,
+      "names": {
+        "алексей": 23,
+        "дмитрий": 19,
+        "иван": 17,
+        "михаил": 15,
+        "сергей": 14,
+        "анастасия": 12,
+        "екатерина": 11,
+        "никита": 10,
+        "артём": 9,
+        "виктор": 8,
+        "максим": 8,
+        "олга": 7
+      },
+      "first_names": {
+        "алексей": 23,
+        "дмитрий": 19,
+        "иван": 17,
+        "михаил": 15,
+        "сергей": 14
+      },
+      "last_names": {
+        "иванов": 12,
+        "петров": 11,
+        "сидоров": 9,
+        "кузнецов": 8,
+        "смирнов": 7
+      },
+      "professions": {
+        "программист на java": 5,
+        "студент миссис": 4,
+        "люблю майнкрафт": 3,
+        "fullstack developer": 2,
+        "ai engineer": 2
+      },
+      "users_activity": {
+        "123456789": {
+          "first_name": "Дмитрий",
+          "last_name": "Иванов",
+          "username": "@dimon_miner",
+          "messages": 45
+        },
+        "987654321": {
+          "first_name": "Алексей",
+          "last_name": "Петров",
+          "username": "@alex_craft",
+          "messages": 32
+        },
+        "555666777": {
+          "first_name": "Никита",
+          "last_name": "Сидоров",
+          "username": "@nikita_pro",
+          "messages": 28
+        },
+        "111222333": {
+          "first_name": "Артём",
+          "last_name": "Кузнецов",
+          "username": null,
+          "messages": 25
+        },
+        "444555666": {
+          "first_name": "Михаил",
+          "last_name": "Смирнов",
+          "username": "@mike_build",
+          "messages": 22
+        }
+      },
+      "messages_ngrams": {
+        "сервер": 156,
+        "майнкрафт": 142,
+        "игра": 89,
+        "плагин": 67,
+        "сервер майнкрафт": 45,
+        "кто заходит": 34,
+        "админ нужен": 28,
+        "играем вместе": 25,
+        "лутбокс": 22,
+        "тп дом": 19
+      }
+    },
+    "Хакатоны - ITAM": {
+      "users_quantity": 456,
+      "users_with_open_numbers": 34,
+      "users_with_premium": 67,
+      "names": {
+        "александр": 12,
+        "виктория": 9,
+        "павел": 8,
+        "елена": 7,
+        "андрей": 6
+      },
+      "first_names": {
+        "александр": 12,
+        "виктория": 9,
+        "павел": 8
+      },
+      "last_names": {
+        "морозов": 4,
+        "волкова": 3,
+        "орлов": 3
+      },
+      "professions": {
+        "участник хакатонов": 8,
+        "студент itam": 6,
+        "python developer": 4
+      },
+      "users_activity": {
+        "222333444": {
+          "first_name": "Виктория",
+          "last_name": "Волкова",
+          "username": "@vika_hack",
+          "messages": 38
+        },
+        "777888999": {
+          "first_name": "Александр",
+          "last_name": "Морозов",
+          "username": "@sasha_code",
+          "messages": 29
+        },
+        "123987456": {
+          "first_name": "Павел",
+          "last_name": "Орлов",
+          "username": "@pavel_hackathon",
+          "messages": 24
+        },
+        "456789123": {
+          "first_name": "Елена",
+          "last_name": "Лебедева",
+          "username": null,
+          "messages": 21
+        }
+      },
+      "messages_ngrams": {
+        "хакатон": 89,
+        "команда": 76,
+        "задача": 54,
+        "идея": 48,
+        "регистрация": 42
+      }
+    },
+    "AI Knowledge Club": {
+      "users_quantity": 892,
+      "users_with_open_numbers": 56,
+      "users_with_premium": 234,
+      "names": {
+        "николай": 18,
+        "софия": 14,
+        "татьяна": 12,
+        "роман": 11,
+        "анна": 10
+      },
+      "first_names": {
+        "николай": 18,
+        "софия": 14,
+        "татьяна": 12
+      },
+      "last_names": {
+        "попов": 7,
+        "козлова": 6,
+        "фёдоров": 5
+      },
+      "professions": {
+        "ai researcher": 12,
+        "data scientist": 9,
+        "ml engineer": 8
+      },
+      "users_activity": {
+        "999888777": {
+          "first_name": "Николай",
+          "last_name": "Попов",
+          "username": "@nikolay_ai",
+          "messages": 67
+        },
+        "111000222": {
+          "first_name": "София",
+          "last_name": "Козлова",
+          "username": "@sofia_ml",
+          "messages": 54
+        },
+        "333444555": {
+          "first_name": "Татьяна",
+          "last_name": "Фёдорова",
+          "username": "@tanya_neuro",
+          "messages": 41
+        },
+        "666777888": {
+          "first_name": "Роман",
+          "last_name": "Зайцев",
+          "username": "@roman_gpt",
+          "messages": 38
+        }
+      },
+      "messages_ngrams": {
+        "нейросеть": 123,
+        "gpt": 98,
+        "модель": 87,
+        "обучение": 76,
+        "fine-tuning": 65
+      }
+    },
+    "НИТУ МИСИС ЦК - КИБЕРБЕЗОПАСНОСТЬ И ЗАЩИТА ДАННЫХ (группа потока 2024-2025)": {
+      "users_quantity": 312,
+      "users_with_open_numbers": 23,
+      "users_with_premium": 45,
+      "names": {
+        "степан": 8,
+        "вера": 7,
+        "григорий": 6,
+        "лидия": 5
+      },
+      "first_names": {
+        "степан": 8,
+        "вера": 7,
+        "григорий": 6
+      },
+      "last_names": {
+        "владимиров": 3,
+        "никитина": 3
+      },
+      "professions": {
+        "студент миссис": 15,
+        "кибербезопасность": 8,
+        "2024 поток": 6
+      },
+      "users_activity": {
+        "789456123": {
+          "first_name": "Степан",
+          "last_name": "Владимиров",
+          "username": "@stepan_sec",
+          "messages": 29
+        },
+        "321654987": {
+          "first_name": "Вера",
+          "last_name": "Никитина",
+          "username": "@vera_cyber",
+          "messages": 23
+        },
+        "147258369": {
+          "first_name": "Григорий",
+          "last_name": "Семёнов",
+          "username": null,
+          "messages": 19
+        }
+      },
+      "messages_ngrams": {
+        "лекция": 45,
+        "зачёт": 38,
+        "лабораторная": 34,
+        "мисис": 32,
+        "кб": 29
+      }
+    },
+    "AGI in 2024": {
+      "users_quantity": 678,
+      "users_with_open_numbers": 41,
+      "users_with_premium": 123,
+      "names": {
+        "fedya": 15,
+        "masha": 12,
+        "vova": 10,
+        "liza": 9
+      },
+      "first_names": {
+        "fedya": 15,
+        "masha": 12,
+        "vova": 10
+      },
+      "last_names": {
+        "putin": 4,
+        "navalny": 3
+      },
+      "professions": {
+        "agi researcher": 10,
+        "superintelligence": 7,
+        "singularity": 5
+      },
+      "users_activity": {
+        "555111222": {
+          "first_name": "Фёдор",
+          "last_name": "Путин",
+          "username": "@fedya_agi",
+          "messages": 52
+        },
+        "333777444": {
+          "first_name": "Маша",
+          "last_name": "Навальная",
+          "username": "@masha_singularity",
+          "messages": 46
+        },
+        "999000111": {
+          "first_name": "Вова",
+          "last_name": "Песков",
+          "username": "@vova_foom",
+          "messages": 39
+        }
+      },
+      "messages_ngrams": {
+        "agi": 156,
+        "superintelligence": 134,
+        "singularity": 112,
+        "alignment": 98,
+        "xai": 87
+      }
+    }
+  }
+}

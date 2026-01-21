@@ -1,0 +1,324 @@
+{
+  "groups_users": {
+    "ITAM.minecraft": {
+      "123456789": {
+        "first_name": "Иван",
+        "last_name": "Петров",
+        "username": "ivan_petrov"
+      },
+      "987654321": {
+        "first_name": "Мария",
+        "last_name": "Сидорова",
+        "username": "maria_sidorova"
+      },
+      "555666777": {
+        "first_name": "Алексей",
+        "last_name": null,
+        "username": null
+      },
+      "222222222": {
+        "first_name": "Сергей",
+        "last_name": "Михайлов",
+        "username": "sergey_cloud"
+      },
+      "111111112": {
+        "first_name": "Кирилл",
+        "last_name": "Комаров",
+        "username": "kirill_mc"
+      },
+      "111111113": {
+        "first_name": "Анастасия",
+        "last_name": "Захарова",
+        "username": null
+      },
+      "999999888": {
+        "first_name": "Марк",
+        "last_name": "Виноградов",
+        "username": "mark_craft"
+      },
+      "777888999": {
+        "first_name": "Анна",
+        "last_name": "Смирнова",
+        "username": "anna_ai"
+      },
+      "112233445": {
+        "first_name": "Павел",
+        "last_name": "Зайцев",
+        "username": "pavel_agi"
+      },
+      "556677889": {
+        "first_name": "Ольга",
+        "last_name": "Кузнецова",
+        "username": "olga_future"
+      },
+      "222333444": {
+        "first_name": "Михаил",
+        "last_name": "Волков",
+        "username": "mike_ml"
+      },
+      "999888777": {
+        "first_name": "Илья",
+        "last_name": "Соловьев",
+        "username": "ilya_quantum"
+      },
+      "111111444": {
+        "first_name": "Светлана",
+        "last_name": "Ларионова",
+        "username": null
+      }
+    },
+    "Хакатоны - ITAM": {
+      "111222333": {
+        "first_name": "Дмитрий",
+        "last_name": "Козлов",
+        "username": "dmitry_hack"
+      },
+      "444555666": {
+        "first_name": "Елена",
+        "last_name": "Иванова",
+        "username": "elena_dev"
+      },
+      "333333333": {
+        "first_name": "Татьяна",
+        "last_name": null,
+        "username": "tanya_hack"
+      },
+      "111111114": {
+        "first_name": "Глеб",
+        "last_name": "Соколов",
+        "username": "gleb_hack"
+      },
+      "111111115": {
+        "first_name": "Валерия",
+        "last_name": "Белова",
+        "username": "lera_code"
+      },
+      "777788889": {
+        "first_name": "Арсений",
+        "last_name": "Крылов",
+        "username": "arseniy_dev"
+      },
+      "555666777": {
+        "first_name": "Алексей",
+        "last_name": null,
+        "username": null
+      },
+      "987654321": {
+        "first_name": "Мария",
+        "last_name": "Сидорова",
+        "username": "maria_sidorova"
+      },
+      "333444555": {
+        "first_name": "София",
+        "last_name": null,
+        "username": "sophia_neural"
+      },
+      "444333222": {
+        "first_name": "Денис",
+        "last_name": "Комиссаров",
+        "username": "denis_unity"
+      },
+      "666555444": {
+        "first_name": "Алёна",
+        "last_name": "Михайлова",
+        "username": "alena_gamedev"
+      },
+      "111111333": {
+        "first_name": "Петр",
+        "last_name": "Воронцов",
+        "username": "petr_unreal"
+      }
+    },
+    "AI Knowledge Club": {
+      "777888999": {
+        "first_name": "Анна",
+        "last_name": "Смирнова",
+        "username": "anna_ai"
+      },
+      "222333444": {
+        "first_name": "Михаил",
+        "last_name": "Волков",
+        "username": "mike_ml"
+      },
+      "333444555": {
+        "first_name": "София",
+        "last_name": null,
+        "username": "sophia_neural"
+      },
+      "111111111": {
+        "first_name": "Екатерина",
+        "last_name": "Новикова",
+        "username": "ekaterina_ds"
+      },
+      "111111116": {
+        "first_name": "Илья",
+        "last_name": "Макаров",
+        "username": "ilya_ai"
+      },
+      "111111117": {
+        "first_name": "Ксения",
+        "last_name": null,
+        "username": "kseniya_nlp"
+      },
+      "888888777": {
+        "first_name": "Даниил",
+        "last_name": "Фомин",
+        "username": "dan_ai_research"
+      },
+      "666777888": {
+        "first_name": "Николай",
+        "last_name": "Федоров",
+        "username": "nikolay_cyber"
+      },
+      "999000111": {
+        "first_name": "Виктория",
+        "last_name": "Морозова",
+        "username": null
+      },
+      "111222333": {
+        "first_name": "Дмитрий",
+        "last_name": "Козлов",
+        "username": "dmitry_hack"
+      },
+      "888888999": {
+        "first_name": "Елизавета",
+        "last_name": "Белкина",
+        "username": "liza_security"
+      },
+      "111111222": {
+        "first_name": "Григорий",
+        "last_name": "Орлов",
+        "username": "greg_sec"
+      },
+      "333333444": {
+        "first_name": "Кристина",
+        "last_name": null,
+        "username": "kristina_ethical"
+      }
+    },
+    "НИТУ МИСИС ЦК - КИБЕРБЕЗОПАСНОСТЬ И ЗАЩИТА ДАННЫХ (группа потока 2024-2025)": {
+      "222222222": {
+        "first_name": "Сергей",
+        "last_name": "Михайлов",
+        "username": "sergey_cloud"
+      },
+      "777777777": {
+        "first_name": "Игорь",
+        "last_name": "Быков",
+        "username": "igor_cloud"
+      },
+      "888888888": {
+        "first_name": "Юлия",
+        "last_name": "Воробьева",
+        "username": "julia_aws"
+      },
+      "999999999": {
+        "first_name": "Станислав",
+        "last_name": null,
+        "username": "stan_gcp"
+      },
+      "123456789": {
+        "first_name": "Иван",
+        "last_name": "Петров",
+        "username": "ivan_petrov"
+      },
+      "555555444": {
+        "first_name": "Антон",
+        "last_name": "Жуков",
+        "username": "anton_azure"
+      },
+      "666777888": {
+        "first_name": "Николай",
+        "last_name": "Федоров",
+        "username": "nikolay_cyber"
+      },
+      "999000111": {
+        "first_name": "Виктория",
+        "last_name": "Морозова",
+        "username": null
+      },
+      "222222222": {
+        "first_name": "Сергей",
+        "last_name": "Михайлов",
+        "username": "sergey_cloud"
+      },
+      "111111118": {
+        "first_name": "Тимур",
+        "last_name": "Егоров",
+        "username": "timur_sec"
+      },
+      "111111119": {
+        "first_name": "Арина",
+        "last_name": "Титова",
+        "username": null
+      },
+      "666666555": {
+        "first_name": "Полина",
+        "last_name": "Щербакова",
+        "username": "polina_sec"
+      }
+    },
+    "AGI in 2024": {
+      "111111111": {
+        "first_name": "Екатерина",
+        "last_name": "Новикова",
+        "username": "ekaterina_ds"
+      },
+      "444444444": {
+        "first_name": "Артем",
+        "last_name": "Лебедев",
+        "username": "artem_ds"
+      },
+      "555555555": {
+        "first_name": "Дарья",
+        "last_name": "Гусева",
+        "username": null
+      },
+      "666666666": {
+        "first_name": "Роман",
+        "last_name": "Щербаков",
+        "username": "roman_data"
+      },
+      "222333444": {
+        "first_name": "Михаил",
+        "last_name": "Волков",
+        "username": "mike_ml"
+      },
+      "777777666": {
+        "first_name": "Вера",
+        "last_name": "Соловьева",
+        "username": "vera_data_science"
+      },
+      "112233445": {
+        "first_name": "Павел",
+        "last_name": "Зайцев",
+        "username": "pavel_agi"
+      },
+      "556677889": {
+        "first_name": "Ольга",
+        "last_name": "Кузнецова",
+        "username": "olga_future"
+      },
+      "111111111": {
+        "first_name": "Екатерина",
+        "last_name": "Новикова",
+        "username": "ekaterina_ds"
+      },
+      "333333333": {
+        "first_name": "Татьяна",
+        "last_name": null,
+        "username": "tanya_hack"
+      },
+      "111111120": {
+        "first_name": "Богдан",
+        "last_name": "Климов",
+        "username": "bogdan_agi"
+      },
+      "444444333": {
+        "first_name": "Руслан",
+        "last_name": "Громов",
+        "username": "ruslan_agi_dev"
+      }
+    }
+  }
+}

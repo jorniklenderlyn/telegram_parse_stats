@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Telegram Analytics Dashboard</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4a6fa5",
+              secondary: "#e6f0fa",
+              group1: "#4a6fa5",
+              group2: "#2e7d32",
+              group3: "#ed6c02",
+              group4: "#7b1fa2",
+              group5: "#0288d1",
+            },
+          },
+        },
+      };
+    </script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          BlinkMacSystemFont,
+          sans-serif;
+        background-color: #f8fafc;
+      }
+      .card {
+        transition: all 0.3s ease;
+        box-shadow:
+          0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow:
+          0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      .avatar-preview {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        font-weight: 600;
+        font-size: 0.875rem;
+      }
+      .stat-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        border: 1px solid #e2e8f0;
+      }
+      .highlight {
+        background-color: #e6f0fa;
+        border-left: 4px solid #4a6fa5;
+      }
+      .group-tab {
+        transition: all 0.2s ease;
+        border-bottom: 3px solid transparent;
+      }
+      .group-tab:hover {
+        background-color: #f1f5f9;
+      }
+      .group-tab.active {
+        background-color: #f1f5f9;
+        border-bottom: 3px solid #4a6fa5;
+        font-weight: 600;
+        color: #1e3a8a;
+      }
+      .group-badge {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-6 max-w-7xl">
+      <div class="text-center mb-10">
+        <h1 class="text-3xl md:text-4xl font-bold text-primary mb-3">
+          Telegram Analytics Dashboard
+        </h1>
+        <p class="text-gray-600">
+          Анализ пользователей и каналов Telegram (Макет данных)
+        </p>
+      </div>
+
+      <!-- Group Analysis Section -->
+      <div class="mb-12">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden card">
+          <div class="bg-primary text-white p-5">
+            <h2 class="text-2xl font-bold flex items-center">
+              <i class="fas fa-users mr-3"></i>
+              Часть 1: Анализ пользователей групп в Telegram
+            </h2>
+          </div>
+
+          <div class="p-6">
+            <!-- Group Tabs -->
+            <div class="mb-8">
+              <h3
+                class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+              >
+                <i class="fas fa-layer-group mr-2 text-primary"></i>
+                Выберите группу для детального анализа
+              </h3>
+              <div class="flex flex-wrap gap-3 mb-6">
+                <button
+                  id="all-groups-tab"
+                  class="group-tab active px-4 py-2 rounded-t-lg text-sm font-medium bg-gray-100 text-gray-700"
+                >
+                  <i class="fas fa-th-large mr-2"></i>Все группы
+                </button>
+                 
+                <button
+                  id="group1-tab"
+                  class="group-tab px-4 py-2 rounded-t-lg text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200"
+                >
+                  <span class="group-badge bg-group1"></span>Crypto Enthusiasts
+                </button>
+                
+                <button
+                  id="group2-tab"
+                  class="group-tab px-4 py-2 rounded-t-lg text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200"
+                >
+                  <span class="group-badge bg-group2"></span>Python
+                Developers
+                </button>
+                
+                <button
+                  id="group3-tab"
+                  class="group-tab px-4 py-2 rounded-t-lg text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200"
+                >
+                  <span class="group-badge bg-group3"></span>Travel
+                Lovers
+                </button>
+                
+                <button
+                  id="group4-tab"
+                  class="group-tab px-4 py-2 rounded-t-lg text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200"
+                >
+                  <span class="group-badge bg-group4"></span>Book Club
+                </button>
+                
+                <button
+                  id="group5-tab"
+                  class="group-tab px-4 py-2 rounded-t-lg text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200"
+                >
+                  <span class="group-badge bg-group5"></span>Fitness Hub
+                </button>
+                
+              </div>
+
+              <!-- Group Summary -->
+              <div
+                id="group-summary"
+                class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
+              >
+                <div class="stat-card rounded-xl p-5">
+                  <div class="flex items-center mb-3">
+                    <i class="fas fa-users text-2xl text-blue-500 mr-3"></i>
+                    <h4 class="text-lg font-semibold text-gray-700">
+                      Общая статистика
+                    </h4>
+                  </div>
+                  <ul class="space-y-2">
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">Всего групп:</span>
+                      <span class="font-bold text-primary">5</span>
+                    </li>
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">Всего пользователей:</span>
+                      <span class="font-bold text-primary"
+                        >1650</span
+                      >
+                    </li>
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">С открытыми номерами:</span>
+                      <span class="font-bold text-green-600"
+                        >495</span
+                      >
+                    </li>
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">Premium пользователи:</span>
+                      <span class="font-bold text-yellow-600"
+                        >227</span
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="stat-card rounded-xl p-5">
+                  <div class="flex items-center mb-3">
+                    <i
+                      class="fas fa-percentage text-2xl text-purple-500 mr-3"
+                    ></i>
+                    <h4 class="text-lg font-semibold text-gray-700">
+                      Процентные показатели
+                    </h4>
+                  </div>
+                  <ul class="space-y-2">
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">Открытые номера:</span>
+                      <span class="font-bold text-green-600">39.5%</span>
+                    </li>
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">Premium пользователи:</span>
+                      <span class="font-bold text-yellow-600">12.3%</span>
+                    </li>
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">Аватарки - фото:</span>
+                      <span class="font-bold text-blue-600">60.0%</span>
+                    </li>
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">Аватарки - эмодзи:</span>
+                      <span class="font-bold text-yellow-600">28.2%</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="stat-card rounded-xl p-5">
+                  <div class="flex items-center mb-3">
+                    <i class="fas fa-chart-pie text-2xl text-pink-500 mr-3"></i>
+                    <h4 class="text-lg font-semibold text-gray-700">
+                      Топ-показатели
+                    </h4>
+                  </div>
+                  <ul class="space-y-2">
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">Самая активная группа:</span>
+                      <span class="font-bold text-orange-600"
+                        >Travel Lovers</span
+                      >
+                    </li>
+                    <li class="flex justify-between">
+                      <span class="text-gray-600"
+                        >Наибольшее число premium:</span
+                      >
+                      <span class="font-bold text-yellow-600"
+                        >Travel Lovers (65)</span
+                      >
+                    </li>
+                    <li class="flex justify-between">
+                      <span class="text-gray-600">Самое популярное имя:</span>
+                      <span class="font-bold text-indigo-600">Anna</span>
+                    </li>
+                    <li class="flex justify-between">
+                      <span class="text-gray-600"
+                        >Самый социальный пользователь:</span
+                      >
+                      <span class="font-bold">@bookworm_irina</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Detailed Group Stats -->
+              <div id="detailed-stats" class="hidden">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  <div class="stat-card rounded-xl p-5">
+                    <h4
+                      class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+                    >
+                      <i class="fas fa-user-friends mr-2 group-color"></i>
+                      <span class="group-title">Название группы</span>
+                    </h4>
+                    <div class="space-y-3">
+                      <div class="flex justify-between">
+                        <span class="text-gray-600">Участников:</span>
+                        <span class="font-bold text-primary group-members"
+                          >0</span
+                        >
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-gray-600">Открытых номеров:</span>
+                        <span
+                          class="font-bold text-green-600 group-public-phones"
+                          >0 (0%)</span
+                        >
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-gray-600">Premium аккаунтов:</span>
+                        <span class="font-bold text-yellow-600 group-premium"
+                          >0 (0%)</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="stat-card rounded-xl p-5">
+                    <h4
+                      class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+                    >
+                      <i class="fas fa-chart-bar mr-2 text-indigo-500"></i>
+                      Статистика имён
+                    </h4>
+                    <div class="h-48">
+                      <canvas id="group-name-chart"></canvas>
+                    </div>
+                  </div>
+
+                  <!-- Avatar Trends -->
+                  <div class="stat-card rounded-xl p-5">
+                    <h4
+                      class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+                    >
+                      <i class="fas fa-user-circle mr-2 text-pink-500"></i>
+                      Типы аватарок
+                    </h4>
+                    <!-- Контейнер с фиксированной высотой и шириной по контенту -->
+                    <div class="flex justify-center">
+                      <div class="w-full max-w-xs h-64">
+                        <canvas
+                          id="group-avatar-chart"
+                          class="w-full h-full"
+                        ></canvas>
+                      </div>
+                    </div>
+                    <!-- Дополнительная текстовая статистика (опционально) -->
+                    <div
+                      class="mt-4 grid grid-cols-3 gap-2 text-center text-sm"
+                    >
+                      <div>
+                        <div
+                          class="avatar-preview bg-blue-500 text-white mx-auto mb-1"
+                        >
+                          P
+                        </div>
+                        <span class="font-medium group-avatar-photo">0%</span>
+                        <p class="text-gray-600 text-xs">Фото</p>
+                      </div>
+                      <div>
+                        <div
+                          class="avatar-preview bg-yellow-400 text-gray-800 mx-auto mb-1"
+                        >
+                          E
+                        </div>
+                        <span class="font-medium group-avatar-emoji">0%</span>
+                        <p class="text-gray-600 text-xs">Эмодзи</p>
+                      </div>
+                      <div>
+                        <div
+                          class="avatar-preview bg-gray-400 text-white mx-auto mb-1"
+                        >
+                          D
+                        </div>
+                        <span class="font-medium group-avatar-default">0%</span>
+                        <p class="text-gray-600 text-xs">Стандартные</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <!-- Activity Chart -->
+                  <div class="stat-card rounded-xl p-5">
+                    <h4
+                      class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+                    >
+                      <i class="fas fa-bolt mr-2 text-purple-500"></i>
+                      Активность пользователей
+                    </h4>
+                    <div class="h-80">
+                      <canvas id="group-activity-chart"></canvas>
+                    </div>
+                  </div>
+
+                  <!-- Premium Users Chart -->
+                  <div class="stat-card rounded-xl p-5">
+                    <h4
+                      class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+                    >
+                      <i class="fas fa-crown mr-2 text-yellow-500"></i>
+                      Premium пользователи
+                    </h4>
+                    <div class="h-80">
+                      <canvas id="group-premium-chart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <!-- Reactions Chart -->
+              <div class="stat-card rounded-xl p-5">
+                <h3
+                  class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+                >
+                  <i class="fas fa-hand-holding-heart mr-2 text-orange-500"></i>
+                  Общие тренды: Популярные реакции
+                </h3>
+                <div class="h-80">
+                  <canvas id="reactionsChart"></canvas>
+                </div>
+              </div>
+
+              <!-- Keywords Chart -->
+              <div class="stat-card rounded-xl p-5">
+                <h3
+                  class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+                >
+                  <i class="fas fa-hashtag mr-2 text-teal-500"></i>
+                  Общие тренды: Ключевые слова
+                </h3>
+                <div class="h-80">
+                  <canvas id="keywordsChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Channel Analysis Section (without changes) -->
+      <div>
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden card">
+          <div class="bg-primary text-white p-5">
+            <h2 class="text-2xl font-bold flex items-center">
+              <i class="fas fa-broadcast-tower mr-3"></i>
+              Часть 2: Анализ каналов в Telegram
+            </h2>
+          </div>
+
+          <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <!-- Channel Info -->
+              <div
+                class="stat-card rounded-xl p-5 flex flex-col justify-center items-center text-center"
+              >
+                <div class="bg-indigo-100 p-4 rounded-full mb-4">
+                  <i class="fas fa-tv text-3xl text-indigo-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                  Выбранный канал
+                </h3>
+                <div class="text-2xl font-bold text-indigo-600 my-2">
+                  Tech News Daily
+                </div>
+                <div class="space-y-1">
+                  <p class="text-gray-600">
+                    <i class="fas fa-users mr-2"></i> Подписчиков: 1,500
+                  </p>
+                  <p class="text-gray-600">
+                    <i class="fas fa-rss mr-2"></i> Регулярные посты: Да
+                  </p>
+                </div>
+              </div>
+
+              <!-- Top Post -->
+              <div class="stat-card rounded-xl p-5">
+                <h3
+                  class="text-lg font-semibold text-gray-700 mb-3 flex items-center"
+                >
+                  <i class="fas fa-fire mr-2 text-red-500"></i>
+                  Самый популярный пост
+                </h3>
+                <div class="highlight p-4 rounded-lg">
+                  <p class="font-bold text-lg mb-2">
+                    Новый прорыв в ИИ: Революция в медицине
+                  </p>
+                  <div class="flex justify-between mt-3 text-sm">
+                    <span class="flex items-center"
+                      ><i class="fas fa-eye mr-1 text-blue-500"></i> Просмотры:
+                      5,000</span
+                    >
+                    <span class="flex items-center"
+                      ><i class="fas fa-heart mr-1 text-red-500"></i> Лайки:
+                      1,200</span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <!-- Top Commenter -->
+              <div
+                class="stat-card rounded-xl p-5 flex flex-col justify-center items-center text-center"
+              >
+                <div class="bg-pink-100 p-4 rounded-full mb-4">
+                  <i class="fas fa-comment-dots text-3xl text-pink-600"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                  Самый активный комментатор
+                </h3>
+                <div class="text-2xl font-bold text-pink-600 my-2">
+                  @TechEnthusiast
+                </div>
+                <p class="text-gray-600">
+                  <i class="fas fa-comments mr-2"></i> Комментариев: 50
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <!-- Reactions Chart -->
+              <div class="stat-card rounded-xl p-5">
+                <h3
+                  class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+                >
+                  <i class="fas fa-thumbs-up mr-2 text-green-500"></i>
+                  Реакции на посты канала
+                </h3>
+                <div class="h-80">
+                  <canvas id="channelReactionsChart"></canvas>
+                </div>
+              </div>
+
+              <!-- Keywords Chart -->
+              <div class="stat-card rounded-xl p-5">
+                <h3
+                  class="text-lg font-semibold text-gray-700 mb-4 flex items-center"
+                >
+                  <i class="fas fa-search mr-2 text-blue-500"></i>
+                  Ключевые слова в постах
+                </h3>
+                <div class="h-80">
+                  <canvas id="channelKeywordsChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Store all charts
+        const charts = {};
+
+        // Group data for detailed view
+        const groupData = {
+          all: {
+            groupName: "Все группы",
+            color: "primary",
+            members: 1650,
+            publicPhones: 495,
+            premiumUsers: 203,
+            avatarTypes: [1200, 600, 200],
+            avatarPercentages: [60.0, 28.2, 11.8],
+            topNames: ["Anna", "Alex", "Dmitry", "Maria", "Ivan"],
+            nameCounts: [45, 38, 32, 29, 25],
+            activityUsers: ["@user1", "@user2", "@user3", "@user4", "@user5"],
+            activityCounts: [120, 95, 80, 65, 50],
+          },
+          group1: {
+            groupName: "Crypto Enthusiasts",
+            color: "group1",
+            members: 320,
+            publicPhones: 96,
+            premiumUsers: 40,
+            avatarTypes: [180, 90, 50],
+            avatarPercentages: [56.25, 28.13, 15.63],
+            topNames: ["Alex", "Maria", "Ivan", "Anna", "John"],
+            nameCounts: [15, 12, 10, 8, 7],
+            activityUsers: [
+              "@crypto_alex",
+              "@blockchain_maria",
+              "@btc_ivan",
+              "@eth_anna",
+              "@coin_john",
+            ],
+            activityCounts: [30, 25, 20, 15, 10],
+          },
+          group2: {
+            groupName: "Python Developers",
+            color: "group2",
+            members: 280,
+            publicPhones: 84,
+            premiumUsers: 35,
+            avatarTypes: [150, 80, 50],
+            avatarPercentages: [53.57, 28.57, 17.86],
+            topNames: ["Dmitry", "Elena", "Sergey", "Olga", "Mikhail"],
+            nameCounts: [18, 14, 12, 9, 7],
+            activityUsers: [
+              "@py_dmitry",
+              "@dev_elena",
+              "@code_sergey",
+              "@script_olga",
+              "@debug_mikhail",
+            ],
+            activityCounts: [45, 38, 30, 22, 15],
+          },
+          group3: {
+            groupName: "Travel Lovers",
+            color: "group3",
+            members: 450,
+            publicPhones: 135,
+            premiumUsers: 65,
+            avatarTypes: [300, 100, 50],
+            avatarPercentages: [66.67, 22.22, 11.11],
+            topNames: ["Anna", "Mikhail", "Svetlana", "Pavel", "Natalia"],
+            nameCounts: [25, 20, 18, 15, 12],
+            activityUsers: [
+              "@wanderer_anna",
+              "@globetrotter_mike",
+              "@adventure_svet",
+              "@backpacker_pavel",
+              "@nomad_nata",
+            ],
+            activityCounts: [60, 48, 40, 35, 30],
+          },
+          group4: {
+            groupName: "Book Club",
+            color: "group4",
+            members: 290,
+            publicPhones: 87,
+            premiumUsers: 42,
+            avatarTypes: [160, 90, 40],
+            avatarPercentages: [55.17, 31.03, 13.79],
+            topNames: ["Irina", "Alexey", "Tatiana", "Victor", "Oksana"],
+            nameCounts: [22, 18, 15, 12, 10],
+            activityUsers: [
+              "@bookworm_irina",
+              "@literature_alex",
+              "@novels_tanya",
+              "@poetry_victor",
+              "@reads_oksana",
+            ],
+            activityCounts: [70, 55, 45, 35, 28],
+          },
+          group5: {
+            groupName: "Fitness Hub",
+            color: "group5",
+            members: 310,
+            publicPhones: 93,
+            premiumUsers: 45,
+            avatarTypes: [200, 70, 40],
+            avatarPercentages: [64.52, 22.58, 12.9],
+            topNames: ["Alex", "Elena", "Dmitry", "Svetlana", "Pavel"],
+            nameCounts: [20, 16, 14, 12, 10],
+            activityUsers: [
+              "@fit_alex",
+              "@gym_elena",
+              "@strong_dima",
+              "@yoga_svet",
+              "@run_pavel",
+            ],
+            activityCounts: [50, 42, 38, 30, 25],
+          },
+        };
+
+        // Initialize all tabs
+        const tabs = document.querySelectorAll(".group-tab");
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            // Update active tab
+            tabs.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+
+            // Get group ID
+            const groupID = this.id.replace("-tab", "");
+
+            // Show/hide summary and detailed stats
+            const summary = document.getElementById("group-summary");
+            const detailed = document.getElementById("detailed-stats");
+
+            if (groupID === "all-groups") {
+              summary.classList.remove("hidden");
+              detailed.classList.add("hidden");
+            } else {
+              summary.classList.add("hidden");
+              detailed.classList.remove("hidden");
+              updateGroupStats(groupData[groupID]);
+            }
+          });
+        });
+
+        // Update stats for selected group
+        function updateGroupStats(data) {
+          // Update text content
+          document.querySelector(".group-title").textContent = data.groupName;
+          document.querySelector(".group-members").textContent = data.members;
+          document.querySelector(".group-public-phones").textContent =
+            `${data.publicPhones} (${((data.publicPhones / data.members) * 100).toFixed(1)}%)`;
+          document.querySelector(".group-premium").textContent =
+            `${data.premiumUsers} (${((data.premiumUsers / data.members) * 100).toFixed(1)}%)`;
+          document.querySelector(".group-avatar-photo").textContent =
+            `${data.avatarPercentages[0]}%`;
+          document.querySelector(".group-avatar-emoji").textContent =
+            `${data.avatarPercentages[1]}%`;
+          document.querySelector(".group-avatar-default").textContent =
+            `${data.avatarPercentages[2]}%`;
+
+          // Update colors
+          const colorClasses = {
+            group1: "#4a6fa5",
+            group2: "#2e7d32",
+            group3: "#ed6c02",
+            group4: "#7b1fa2",
+            group5: "#0288d1",
+            primary: "#4a6fa5",
+          };
+
+          document.querySelector(".group-color").style.color =
+            colorClasses[data.color];
+
+          // Update charts
+          updateGroupCharts(data);
+        }
+
+        // Initialize charts
+        function initCharts() {
+          // Group Name Chart (Bar)
+          const nameCtx = document
+            .getElementById("group-name-chart")
+            .getContext("2d");
+          charts.nameChart = new Chart(nameCtx, {
+            type: "bar",
+            data: {
+              labels: groupData.all.topNames,
+              datasets: [
+                {
+                  label: "Количество пользователей",
+                  data: groupData.all.nameCounts,
+                  backgroundColor: "#4a6fa5",
+                  borderRadius: 4,
+                  borderSkipped: false,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  grid: {
+                    color: "rgba(0, 0, 0, 0.05)",
+                  },
+                },
+                x: {
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+            },
+          });
+
+          // Group Avatar Chart (Pie)
+          const avatarCtx = document
+            .getElementById("group-avatar-chart")
+            .getContext("2d");
+          charts.avatarChart = new Chart(avatarCtx, {
+            type: "pie",
+            data: {
+              labels: ["Фото", "Эмодзи", "Стандартные"],
+              datasets: [
+                {
+                  data: groupData.all.avatarTypes,
+                  backgroundColor: ["#4a6fa5", "#ffcc00", "#94a3b8"],
+                  borderWidth: 0,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+              },
+            },
+          });
+
+          // Group Activity Chart (Bar)
+          const activityCtx = document
+            .getElementById("group-activity-chart")
+            .getContext("2d");
+          charts.activityChart = new Chart(activityCtx, {
+            type: "bar",
+            data: {
+              labels: groupData.all.activityUsers,
+              datasets: [
+                {
+                  label: "Количество сообщений",
+                  data: groupData.all.activityCounts,
+                  backgroundColor: "#64b5f6",
+                  borderRadius: 4,
+                  borderSkipped: false,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  grid: {
+                    color: "rgba(0, 0, 0, 0.05)",
+                  },
+                },
+                x: {
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+            },
+          });
+
+          // Group Premium Chart (Doughnut)
+          const premiumCtx = document
+            .getElementById("group-premium-chart")
+            .getContext("2d");
+          charts.premiumChart = new Chart(premiumCtx, {
+            type: "doughnut",
+            data: {
+              labels: ["Premium", "Обычные"],
+              datasets: [
+                {
+                  data: [
+                    groupData.all.premiumUsers,
+                    groupData.all.members - groupData.all.premiumUsers,
+                  ],
+                  backgroundColor: ["#4a6fa5", "#cbd5e1"],
+                  borderWidth: 0,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: "bottom",
+                  labels: {
+                    padding: 20,
+                    font: {
+                      size: 12,
+                    },
+                  },
+                },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      const total = context.dataset.data.reduce(
+                        (a, b) => a + b,
+                        0,
+                      );
+                      return `${context.label}: ${context.parsed} (${((context.parsed / total) * 100).toFixed(1)}%)`;
+                    },
+                  },
+                },
+              },
+            },
+          });
+
+          // Reactions Chart (Doughnut)
+          const reactionsCtx = document
+            .getElementById("reactionsChart")
+            .getContext("2d");
+          charts.reactionsChart = new Chart(reactionsCtx, {
+            type: "doughnut",
+            data: {
+              labels: ["😂", "👍", "❤️", "🔥", "😮"],
+              datasets: [
+                {
+                  data: [800, 600, 400, 200, 150],
+                  backgroundColor: [
+                    "#FFD700",
+                    "#4a6fa5",
+                    "#e74c3c",
+                    "#f39c12",
+                    "#9b59b6",
+                  ],
+                  borderWidth: 0,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  position: "bottom",
+                  labels: {
+                    padding: 20,
+                    font: {
+                      size: 14,
+                    },
+                    usePointStyle: true,
+                  },
+                },
+              },
+            },
+          });
+
+          // Keywords Chart (Horizontal Bar)
+          const keywordsCtx = document
+            .getElementById("keywordsChart")
+            .getContext("2d");
+          charts.keywordsChart = new Chart(keywordsCtx, {
+            type: "bar",
+            data: {
+              labels: ["AI", "news", "update", "tech", "release", "security"],
+              datasets: [
+                {
+                  label: "Частота упоминаний",
+                  data: [120, 100, 85, 70, 55, 40],
+                  backgroundColor: "#4a6fa5",
+                  borderRadius: 4,
+                  borderSkipped: false,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              indexAxis: "y",
+              plugins: {
+                legend: { display: false },
+              },
+              scales: {
+                x: {
+                  beginAtZero: true,
+                  grid: {
+                    color: "rgba(0, 0, 0, 0.05)",
+                  },
+                },
+                y: {
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+            },
+          });
+
+          // Channel Reactions Chart (Doughnut)
+          const channelReactionsCtx = document
+            .getElementById("channelReactionsChart")
+            .getContext("2d");
+          charts.channelReactionsChart = new Chart(channelReactionsCtx, {
+            type: "doughnut",
+            data: {
+              labels: ["👍", "❤️", "🔥", "👏", "😮"],
+              datasets: [
+                {
+                  data: [450, 320, 280, 200, 150],
+                  backgroundColor: [
+                    "#4a6fa5",
+                    "#e74c3c",
+                    "#f39c12",
+                    "#2ecc71",
+                    "#9b59b6",
+                  ],
+                  borderWidth: 0,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { position: "bottom" },
+              },
+            },
+          });
+
+          // Channel Keywords Chart (Bar)
+          const channelKeywordsCtx = document
+            .getElementById("channelKeywordsChart")
+            .getContext("2d");
+          charts.channelKeywordsChart = new Chart(channelKeywordsCtx, {
+            type: "bar",
+            data: {
+              labels: ["AI", "tech", "news", "security", "update", "release"],
+              datasets: [
+                {
+                  label: "Частота упоминаний",
+                  data: [95, 80, 70, 60, 45, 30],
+                  backgroundColor: "#64b5f6",
+                  borderRadius: 4,
+                  borderSkipped: false,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  grid: {
+                    color: "rgba(0, 0, 0, 0.05)",
+                  },
+                },
+                x: {
+                  grid: {
+                    display: false,
+                  },
+                },
+              },
+            },
+          });
+        }
+
+        // Update group charts with new data
+        function updateGroupCharts(data) {
+          // Update Name Chart
+          charts.nameChart.data.labels = data.topNames;
+          charts.nameChart.data.datasets[0].data = data.nameCounts;
+          charts.nameChart.data.datasets[0].backgroundColor =
+            tailwind.config.theme.extend.colors[data.color];
+          charts.nameChart.update();
+
+          // Update Avatar Chart
+          charts.avatarChart.data.datasets[0].data = data.avatarTypes;
+          charts.avatarChart.update();
+
+          // Update Activity Chart
+          charts.activityChart.data.labels = data.activityUsers;
+          charts.activityChart.data.datasets[0].data = data.activityCounts;
+          charts.activityChart.data.datasets[0].backgroundColor =
+            tailwind.config.theme.extend.colors[data.color];
+          charts.activityChart.update();
+
+          // Update Premium Chart
+          charts.premiumChart.data.datasets[0].data = [
+            data.premiumUsers,
+            data.members - data.premiumUsers,
+          ];
+          charts.premiumChart.update();
+        }
+
+        // Initialize everything
+        initCharts();
+
+        // Set initial state to all groups
+        document.getElementById("all-groups-tab").click();
+      });
+    </script>
+  </body>
+</html>
